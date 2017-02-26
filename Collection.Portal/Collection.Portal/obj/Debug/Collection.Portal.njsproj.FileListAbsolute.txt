@@ -1,0 +1,2 @@
+C:\Source\Collection.Portal\Collection.Portal\Collection.Portal\obj\Debug\Collection.Portal.njsprojResolveAssemblyReference.cache
+C:\Source\Collection.Portal\Collection.Portal\Collection.Portal\bin\Microsoft.NodejsTools.WebRole.dll

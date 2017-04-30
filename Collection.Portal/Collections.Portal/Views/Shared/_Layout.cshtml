@@ -5,37 +5,53 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 
-    <link rel="stylesheet" href="~/css/Sites.css"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/sites.css" />
 
 </head>
 
 <body>
 
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="logo-column">
+        <div>
+            <div>
+                <div class="nav-logo">
 
                 </div>
-                <div class="navigation-column">
-                    <ul class="navbar">
-                        <li><a asp-controller="App" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="App" asp-action="Create">Create</a></li>
-                        <li><a asp-controller="App" asp-action="About">About</a></li>
-                    </ul>
+                <div class="nav-column">
+                    <nav>
+                        <ul class="nav-list">
+                            <li><a asp-controller="App" asp-action="Index">Home</a></li>
+                            <li class="nav-dropdown">
+                                <a href="javascript:void(0)" class="drop-btn">Collection</a>
+                                <div class="drop-items">
+                                    <a asp-controller="Collection" asp-action="Movies">Movies</a>
+                                    <a asp-controller="Collection" asp-action="Books">Books</a>
+                                    <a asp-controller="Collection" asp-action="Games">Games</a>
+                                    <a asp-controller="Collection" asp-action="Albums">Albums</a>
+                                </div>
+                            </li>
+                            <li><a asp-controller="App" asp-action="About">About</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </header>
 
     <div class="body-content">
-        @RenderBody();
+        @RenderBody()
         <hr />
     </div>
 
     <footer>
 
     </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("scripts", false)
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

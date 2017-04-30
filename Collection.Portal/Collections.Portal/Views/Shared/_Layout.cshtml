@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/css/Sites.css"/>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="logo-column">
+
+                </div>
+                <div class="navigation-column">
+                    <ul class="navbar">
+                        <li><a asp-controller="App" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="App" asp-action="Create">Create</a></li>
+                        <li><a asp-controller="App" asp-action="About">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="body-content">
+        @RenderBody();
+        <hr />
+    </div>
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>

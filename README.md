@@ -1,5 +1,5 @@
 # Collection.Portal
-A front end for the [Collection.API] (https://github.com/DanHulse/Collection.API)
+A front end for the [Collection.API](https://github.com/DanHulse/Collection.API/)
 
 ## Overview
 This is an MVC6 web project targeting .NET Core that provides a front end to my Collection.API. It is intended to provide an easy way to view/add/edit records in my Collection database

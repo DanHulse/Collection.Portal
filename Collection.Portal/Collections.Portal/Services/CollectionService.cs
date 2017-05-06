@@ -25,6 +25,8 @@ namespace Collections.Portal.Services
             {
                 client.BaseAddress = this.config.ApiUri;
             }
+
+            return true;
         }
     }
 }

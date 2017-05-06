@@ -82,40 +82,24 @@
                                     <label class="sr-only" asp-for="RunningTime"></label>
                                     <input type="number" class="form-control" id="txtRunningTime" asp-for="RunningTime" placeholder="Running Time: (mins)" />
 
-                                    <label class="mt-2">Certification:</label>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label" asp-for="Certification">
-                                            <input class="form-check-input" type="radio" name="chkCertification" asp-for="Certification" value="U" /> U
-                                        </label>
-                                        <label class="form-check-label" asp-for="Certification">
-                                            <input class="form-check-input pl-1" type="radio" name="chkCertification" asp-for="Certification" value="PG" /> PG
-                                        </label>
-                                        <label class="form-check-label" asp-for="Certification">
-                                            <input class="form-check-input pl-1" type="radio" name="chkCertification" asp-for="Certification" value="12A" /> 12A
-                                        </label>
-                                        <label class="form-check-label" asp-for="Certification">
-                                            <input class="form-check-input pl-1" type="radio" name="chkCertification" asp-for="Certification" value="12" /> 12
-                                        </label>
-                                        <label class="form-check-label" asp-for="Certification">
-                                            <input class="form-check-input pl-1" type="radio" name="chkCertification" asp-for="Certification" value="15" /> 15
-                                        </label>
-                                        <label class="form-check-label" asp-for="Certification">
-                                            <input class="form-check-input pl-1" type="radio" name="chkCertification" asp-for="Certification" value="18" /> 18
-                                        </label>
-                                    </div>
+                                    <label class="sr-only" asp-for="Certification">Certification:</label>
+                                    <select class="form-control mt-2" asp-for="Certification" id="sltCertification">
+                                        <option disabled selected>Certification:</option>
+                                        <option value="U">U</option>
+                                        <option value="PG">PG</option>
+                                        <option value="12A">12A</option>
+                                        <option value="12">12</option>
+                                        <option value="15">15</option>
+                                        <option value="18">18</option>
+                                    </select>
 
-                                    <label class="mt-1" asp-for="Formats">Formats:</label>
-                                    <div class="form-check">
-                                        <label class="form-check-label" asp-for="BluRayFormat">
-                                            <input class="form-check-input" type="checkbox" name="chkFormat" asp-for="BluRayFormat" id="chkFormatBluray" /> Blu-Ray
-                                        </label>
-                                        <label class="form-check-label" asp-for="DVDFormat">
-                                            <input class="form-check-input pl-1" type="checkbox" name="chkFormat" asp-for="DVDFormat" id="chkFormatDVD" /> DVD
-                                        </label>
-                                        <label class="form-check-label" asp-for="DigitalFormat">
-                                            <input class="form-check-input pl-1" type="checkbox" name="chkFormat" asp-for="DigitalFormat" id="chkFormatDigital" /> Digital
-                                        </label>
-                                    </div>
+                                    <label class="sr-only" asp-for="Formats">Formats:</label>
+                                    <select multiple class="form-control" asp-for="Formats" id="sltFormats">
+                                        <option value="Blu-Ray">Blu-Ray</option>
+                                        <option value="DVD">DVD</option>
+                                        <option value="Digital">Digital</option>
+                                        <option value="VHS">VHS</option>
+                                    </select>
 
                                     <div class="row">
                                         <label class="ml-3">Is this part of a series?</label>
@@ -139,30 +123,19 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-sm-10">
-                                    <div class="form-check mt-2">
-                                        <label asp-for="Rating"></label>
-                                        <label class="form-check-label" asp-for="Rating">
-                                            <input class="form-check-input" type="radio" name="chkRating" asp-for="Rating" value="0" /> ☆☆☆☆☆
-                                        </label>
-                                        <label class="form-check-label" asp-for="Rating">
-                                            <input class="form-check-input pl-1" type="radio" name="chkRating" asp-for="Rating" value="1" /> ★☆☆☆☆
-                                        </label>
-                                        <label class="form-check-label" asp-for="Rating">
-                                            <input class="form-check-input pl-1" type="radio" name="chkRating" asp-for="Rating" value="2" /> ★★☆☆☆
-                                        </label>
-                                        <label class="form-check-label" asp-for="Rating">
-                                            <input class="form-check-input pl-1" type="radio" name="chkRating" asp-for="Rating" value="3" /> ★★★☆☆
-                                        </label>
-                                        <label class="form-check-label" asp-for="Rating">
-                                            <input class="form-check-input pl-1" type="radio" name="chkRating" asp-for="Rating" value="4" /> ★★★★☆
-                                        </label>
-                                        <label class="form-check-label" asp-for="Rating">
-                                            <input class="form-check-input pl-1" type="radio" name="chkRating" asp-for="Rating" value="5" /> ★★★★★
-                                        </label>
-                                    </div>
+                                <div class="col-sm-3">
+                                    <label class="sr-only" asp-for="Rating"></label>
+                                    <select class="form-control" asp-for="Rating" id="sltRating">
+                                        <option disabled selected>Rating:</option>
+                                        <option value="0">☆☆☆☆☆</option>
+                                        <option value="1">★☆☆☆☆</option>
+                                        <option value="2">★★☆☆☆</option>
+                                        <option value="3">★★★☆☆</option>
+                                        <option value="4">★★★★☆</option>
+                                        <option value="5">★★★★★</option>
+                                    </select>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-7">
                                     <label class="sr-only" asp-for="PosterUrl"></label>
                                     <input type="url" class="form-control" asp-for="PosterUrl" id="txtPosterUrl" placeholder="Poster URL:" />
                                 </div>

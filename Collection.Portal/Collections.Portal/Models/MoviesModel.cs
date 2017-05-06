@@ -1,29 +1,16 @@
-﻿using Collections.Portal.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Collections.Portal.ViewModels
+namespace Collections.Portal.Models
 {
-    public class MovieViewModel
+    public class MoviesModel
     {
-        [Required]
         public string Title { get; set; }
 
         public string TranslatedTitle { get; set; }
-
-        public string Directors { get; set; }
-
-        public string Producers { get; set; }
-
-        public string Writers { get; set; }
-
-        public string Cast { get; set; }
-
-        public string Genres { get; set; }
 
         public DateTime? ReleaseDate { get; set; }
 
@@ -42,5 +29,15 @@ namespace Collections.Portal.ViewModels
         public int? Rating { get; set; }
 
         public string PosterUrl { get; set; }
+
+        public List<string> Directors { get; set; }
+
+        public List<string> Producers { get; set; }
+
+        public List<string> Writers{ get; set; }
+
+        public List<string> Cast { get; set; }
+
+        public List<string> Genres { get; set; }
     }
 }

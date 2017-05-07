@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="RestSharp.NetCore" Version="105.2.4-rc4-24214-01" />
   </ItemGroup>
 
 </Project>

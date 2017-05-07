@@ -28,6 +28,10 @@ namespace Collections.Portal.Controllers.Web
         [HttpPost]
         public IActionResult Movies(MovieViewModel model)
         {
+            var modelList = new List<MovieViewModel>();
+            modelList.Add(model);
+
+            var result = this.collectionService.PostAsync(modelList);
             return View();
         }
 

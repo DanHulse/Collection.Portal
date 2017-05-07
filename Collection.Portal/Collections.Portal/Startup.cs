@@ -1,43 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Collections.Portal.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using AutoMapper;
+using Collections.Portal.Services.Interfaces;
+using Collections.Portal.Services;
+using Microsoft.Extensions.Options;
 
 namespace Collections.Portal
 {
+    /// <summary>
+    /// Startup class
+    /// </summary>
     public class Startup
     {
-        public IConfigurationRoot Configuration { get; set; }
+        /// <summary>
+        /// Gets or sets the app configuration.
+        /// </summary>
+        private IConfigurationRoot Configuration { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        /// <summary>
+        /// Gets or sets the auto mapper configuration.
+        /// </summary>
+        private MapperConfiguration MapperConfiguration { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="env">The environment</param>
+        public Startup(IHostingEnvironment env)
         {
-            //services.AddTransient<>
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            this.MapperConfiguration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMapperProfileConfiguration());
             });
 
-            var mapper = config.CreateMapper();
-
-            services.AddSingleton(mapper);
-            services.AddMvc();
-
-            services.AddOptions();
-
-            services.Configure<AppSettings>(this.Configuration);
+            this.Configuration = builder.Build();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configures the services.
+        /// </summary>
+        /// <param name="services">The services collection</param>
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddOptions();
+            services.AddMvc();
+
+            services.Configure<AppSettings>(this.Configuration.GetSection("AppSettings"));
+
+            services.AddSingleton(x => this.MapperConfiguration.CreateMapper());
+
+            services.AddTransient<IRestSharpService, RestSharpService>();
+            services.AddTransient<ICollectionService, CollectionService>();
+
+            services.AddScoped(x => x.GetService<IOptionsSnapshot<AppSettings>>().Value);
+        }
+
+        /// <summary>
+        /// Configures the specified application.
+        /// </summary>
+        /// <param name="app">The application builder interface.</param>
+        /// <param name="env">The environment.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
@@ -56,13 +88,6 @@ namespace Collections.Portal
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
             });
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            this.Configuration = builder.Build();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Collections.Portal.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Collections.Portal.Services.Interfaces
 {
     public interface ICollectionService
     {
-        bool PostAsync();
+        bool PostAsync<T>(IEnumerable<T> model);
     }
 }

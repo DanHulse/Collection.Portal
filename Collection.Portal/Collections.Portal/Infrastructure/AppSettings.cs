@@ -8,6 +8,6 @@ namespace Collections.Portal.Infrastructure
 {
     public class AppSettings
     {
-        public Uri ApiUri { get; set; }
+        public Uri ApiUrl { get; set; }
     }
 }

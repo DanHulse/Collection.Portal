@@ -1,5 +1,6 @@
 ﻿using Collections.Portal.Infrastructure;
 using Collections.Portal.Services.Interfaces;
+using Collections.Portal.ViewModels;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -14,17 +15,21 @@ namespace Collections.Portal.Services
     {
         private readonly AppSettings config;
 
-        public CollectionService(IOptions<AppSettings> config)
+        private readonly IRestSharpService restService;
+
+        public CollectionService(AppSettings config, IRestSharpService restService)
         {
-            this.config = config.Value;
+            this.config = config;
+            this.restService = restService;
         }
 
-        public bool PostAsync()
+        public bool PostAsync<T>(IEnumerable<T> model)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = this.config.ApiUri;
-            }
+            this.restService.Url = $"{this.config.ApiUrl}/Movies";
+            this.restService.Body = model;
+            this.restService.RequestMethod = HttpMethod.Post;
+
+            var result = this.restService.Execute();
 
             return true;
         }
